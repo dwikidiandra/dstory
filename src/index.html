@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a237e">
+    <meta name="description" content="DStory - Share your stories with the world">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DStory">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer">
+
+    <title>DStory - Digital Story App</title>
+    
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.5;
+      }
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #4f46e5;
+        color: white;
+        padding: 8px;
+        z-index: 2000;
+        transition: top 0.3s;
+      }
+      .skip-link:focus {
+        top: 0;
+        outline: 3px solid #fff;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      
+      .nav-wrapper {
+        display: flex;
+        align-items: center;
+      }
+      
+      .drawer-button {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 12px;
+        z-index: 1001;
+      }
+      
+      .drawer-button .menu-icon {
+        font-size: 1.8rem;
+        color: #4f46e5;
+      }
+      
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .navigation-drawer {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease-out;
+        z-index: 1000;
+        padding-top: 80px;
+      }
+
+      .navigation-drawer.open {
+        transform: translateX(280px);
+      }
+
+      .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+      }
+
+      .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      #installPrompt {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      #installButton {
+        background-color: #1a237e;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #installButton:hover {
+        background-color: #0d1440;
+      }
+
+      @media screen and (min-width: 1000px) {
+        .drawer-button {
+          display: none !important;
+        }
+
+        .navigation-drawer {
+          position: static;
+          width: auto;
+          height: auto;
+          transform: none !important;
+          left: auto;
+          padding-top: 0;
+          box-shadow: none;
+          background: transparent;
+        }
+
+        .nav-overlay {
+          display: none !important;
+        }
+
+        .nav-list {
+          display: flex;
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <header role="banner">
+      <div class="main-header container">
+        <a class="brand-name" href="#/" aria-label="DStory Home">
+          <i class="fas fa-book-open" aria-hidden="true"></i> 
+          <span>DStory</span>
+        </a>
+
+        <div class="nav-wrapper">
+          <button id="drawer-button" class="drawer-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation-drawer">
+            <span class="menu-icon" aria-hidden="true">☰</span>
+            <span class="sr-only">Menu</span>
+          </button>
+
+          <div id="nav-overlay" class="nav-overlay"></div>
+
+          <nav id="navigation-drawer" class="navigation-drawer" aria-label="Main navigation">
+            <ul id="nav-list" class="nav-list" role="menubar">
+              <li role="none"><a href="#/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+              <li role="none"><a href="#/stories" role="menuitem"><i class="fas fa-list" aria-hidden="true"></i> Stories</a></li>
+              <li role="none"><a href="#/map" role="menuitem"><i class="fas fa-map" aria-hidden="true"></i> Story Map</a></li>
+              <li id="auth-links" role="none"></li>
+              <li role="none"><a href="#/about" role="menuitem"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li>
+              <li role="none"><a href="#/bookmarks" role="menuitem"><i class="fas fa-bookmark" aria-hidden="true"></i> Bookmarks</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" role="main" tabindex="-1"></main>
+
+    <div id="installPrompt" hidden>
+      <button id="installButton">Install DStory App</button>
+    </div>
+
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/dstory/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch((err) => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+
+      // Install Prompt Handler
+      let deferredPrompt;
+      const installButton = document.getElementById('installButton');
+      const installPrompt = document.getElementById('installPrompt');
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        // Show the install button
+        installPrompt.hidden = false;
+      });
+
+      installButton.addEventListener('click', async () => {
+        if (!deferredPrompt) {
+          return;
+        }
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        const { outcome } = await deferredPrompt.userChoice;
+        // We no longer need the prompt
+        deferredPrompt = null;
+        // Hide the install button
+        installPrompt.hidden = true;
+      });
+
+      window.addEventListener('appinstalled', () => {
+        // Hide the install button
+        installPrompt.hidden = true;
+        // Clear the deferredPrompt
+        deferredPrompt = null;
+        // Log the installation
+        console.log('PWA was installed');
+      });
+    </script>
+  </body>
+</html>

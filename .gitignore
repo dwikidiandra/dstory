@@ -1,0 +1,12 @@
+# Directories
+.idea
+.vscode
+node_modules
+dist
+
+# Files
+.env
+.DS_Store
+*.log
+.cache/
+coverage/
