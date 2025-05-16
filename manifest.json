@@ -1,56 +1,56 @@
 {
-    "name": "DStory - Share Your Stories",
+    "name": "DStory - Digital Story App",
     "short_name": "DStory",
-    "description": "Share your stories and moments with others",
-    "start_url": "/dicoding-story-app/",
+    "description": "Share your stories with the world",
+    "start_url": "/dstory/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#4CAF50",
+    "theme_color": "#1a237e",
     "icons": [
       {
-        "src": "/dicoding-story-app/icons/icon-72x72.png",
+        "src": "icons/icon-72x72.png",
         "sizes": "72x72",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-96x96.png",
+        "src": "icons/icon-96x96.png",
         "sizes": "96x96",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-128x128.png",
+        "src": "icons/icon-128x128.png",
         "sizes": "128x128",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-144x144.png",
+        "src": "icons/icon-144x144.png",
         "sizes": "144x144",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-152x152.png",
+        "src": "icons/icon-152x152.png",
         "sizes": "152x152",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-192x192.png",
+        "src": "icons/icon-192x192.png",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-384x384.png",
+        "src": "icons/icon-384x384.png",
         "sizes": "384x384",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/dicoding-story-app/icons/icon-512x512.png",
+        "src": "icons/icon-512x512.png",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "any maskable"
@@ -66,6 +66,22 @@
       }
     ],
     "categories": ["social", "lifestyle"],
-    "orientation": "portrait",
-    "prefer_related_applications": false
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "shortcuts": [
+      {
+        "name": "Add Story",
+        "short_name": "Add Story",
+        "description": "Create a new story",
+        "url": "/dstory/add",
+        "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
+      },
+      {
+        "name": "My Stories",
+        "short_name": "My Stories",
+        "description": "View your stories",
+        "url": "/dstory/stories",
+        "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
+      }
+    ]
   }
