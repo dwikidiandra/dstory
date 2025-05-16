@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1a237e"><meta name="description" content="DStory - Share your stories with the world"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="DStory"><link rel="icon" href="favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="icons/icon-192x192.png"><link rel="manifest" href="manifest.json"><link rel="preconnect" href="https://unpkg.com"><link rel="preconnect" href="https://cdnjs.cloudflare.com"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"><title>DStory - Digital Story App</title><style>body {
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1a237e"><meta name="description" content="DStory - Share your stories with the world"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="DStory"><link rel="icon" href="/dstory/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/dstory/icons/icon-192x192.png"><link rel="manifest" href="/dstory/manifest.json"><link rel="preconnect" href="https://unpkg.com"><link rel="preconnect" href="https://cdnjs.cloudflare.com"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"><title>DStory - Digital Story App</title><style>body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         line-height: 1.5;
@@ -145,23 +145,90 @@
           display: flex;
           gap: 1rem;
         }
-      }</style><link rel="icon" href="/dstory/favicon.ico"><script defer="defer" src="/dstory/runtime.b911d24f7bb4d920df97.bundle.js"></script><script defer="defer" src="/dstory/vendors~49d0a293.992f24c5a8a43fe66517.bundle.js"></script><script defer="defer" src="/dstory/vendors~f962c8fd.a26de2a6a9152f66203e.bundle.js"></script><script defer="defer" src="/dstory/app~7bd12dde.736229ae4a4a8962b3ea.bundle.js"></script><script defer="defer" src="/dstory/app~71c0e426.fe08d5f3cca06fca4d7a.bundle.js"></script><script defer="defer" src="/dstory/app~2ecfd674.1317d27ef6fdbc909650.bundle.js"></script><script defer="defer" src="/dstory/app~b6ab853d.38a40e688a8b357d02d2.bundle.js"></script><script defer="defer" src="/dstory/app~78e0d894.714106b918595adef358.bundle.js"></script><link href="/dstory/css/vendors~49d0a293.afc2328d69aef3f0cdee.css" rel="stylesheet"><link href="/dstory/css/vendors~70f79897.a56a28dd53cbd9d91478.css" rel="stylesheet"><link href="/dstory/css/app~78e0d894.65813233f3902642be23.css" rel="stylesheet"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header role="banner"><div class="main-header container"><a class="brand-name" href="#/" aria-label="DStory Home"><i class="fas fa-book-open" aria-hidden="true"></i> <span>DStory</span></a><div class="nav-wrapper"><button id="drawer-button" class="drawer-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation-drawer"><span class="menu-icon" aria-hidden="true">☰</span> <span class="sr-only">Menu</span></button><div id="nav-overlay" class="nav-overlay"></div><nav id="navigation-drawer" class="navigation-drawer" aria-label="Main navigation"><ul id="nav-list" class="nav-list" role="menubar"><li role="none"><a href="#/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li><li role="none"><a href="#/stories" role="menuitem"><i class="fas fa-list" aria-hidden="true"></i> Stories</a></li><li role="none"><a href="#/map" role="menuitem"><i class="fas fa-map" aria-hidden="true"></i> Story Map</a></li><li id="auth-links" role="none"></li><li role="none"><a href="#/about" role="menuitem"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li><li role="none"><a href="#/bookmarks" role="menuitem"><i class="fas fa-bookmark" aria-hidden="true"></i> Bookmarks</a></li></ul></nav></div></div></header><main id="main-content" class="main-content" role="main" tabindex="-1"></main><div id="installPrompt" hidden><button id="installButton">Install DStory App</button></div><script>// Service Worker Registration
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/dstory/sw.js')
-            .then((registration) => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch((err) => {
-              console.log('ServiceWorker registration failed: ', err);
+      }
+
+      .footer {
+        background-color: white;
+        padding: 1.5rem 0;
+        border-top: 2px solid var(--secondary-color);
+        margin-top: auto;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .footer-brand i {
+        color: var(--secondary-color);
+      }
+
+      .install-container {
+        margin: 1rem 0;
+      }
+
+      .install-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .install-button:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .footer-copyright {
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      /* Ensure footer stays at bottom */
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-content {
+        flex: 1;
+      }</style><link rel="icon" href="/dstory/favicon.ico"><script defer="defer" src="/dstory/runtime.b911d24f7bb4d920df97.bundle.js"></script><script defer="defer" src="/dstory/vendors~49d0a293.992f24c5a8a43fe66517.bundle.js"></script><script defer="defer" src="/dstory/vendors~f962c8fd.a26de2a6a9152f66203e.bundle.js"></script><script defer="defer" src="/dstory/app~7bd12dde.736229ae4a4a8962b3ea.bundle.js"></script><script defer="defer" src="/dstory/app~71c0e426.fe08d5f3cca06fca4d7a.bundle.js"></script><script defer="defer" src="/dstory/app~2ecfd674.1317d27ef6fdbc909650.bundle.js"></script><script defer="defer" src="/dstory/app~b6ab853d.38a40e688a8b357d02d2.bundle.js"></script><script defer="defer" src="/dstory/app~78e0d894.714106b918595adef358.bundle.js"></script><link href="/dstory/css/vendors~49d0a293.afc2328d69aef3f0cdee.css" rel="stylesheet"><link href="/dstory/css/vendors~70f79897.a56a28dd53cbd9d91478.css" rel="stylesheet"><link href="/dstory/css/app~78e0d894.65813233f3902642be23.css" rel="stylesheet"></head><body><a href="#main-content" class="skip-link">Skip to content</a><header role="banner"><div class="main-header container"><a class="brand-name" href="#/" aria-label="DStory Home"><i class="fas fa-book-open" aria-hidden="true"></i> <span>DStory</span></a><div class="nav-wrapper"><button id="drawer-button" class="drawer-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation-drawer"><span class="menu-icon" aria-hidden="true">☰</span> <span class="sr-only">Menu</span></button><div id="nav-overlay" class="nav-overlay"></div><nav id="navigation-drawer" class="navigation-drawer" aria-label="Main navigation"><ul id="nav-list" class="nav-list" role="menubar"><li role="none"><a href="#/" role="menuitem"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li><li role="none"><a href="#/stories" role="menuitem"><i class="fas fa-list" aria-hidden="true"></i> Stories</a></li><li role="none"><a href="#/map" role="menuitem"><i class="fas fa-map" aria-hidden="true"></i> Story Map</a></li><li id="auth-links" role="none"></li><li role="none"><a href="#/about" role="menuitem"><i class="fas fa-info-circle" aria-hidden="true"></i> About</a></li><li role="none"><a href="#/bookmarks" role="menuitem"><i class="fas fa-bookmark" aria-hidden="true"></i> Bookmarks</a></li></ul></nav></div></div></header><main id="main-content" class="main-content" role="main" tabindex="-1"></main><footer class="footer"><div class="container"><div class="footer-content"><div class="footer-brand"><i class="fas fa-book-open" aria-hidden="true"></i> <span>DStory</span></div><div id="installContainer" class="install-container" hidden><button id="installButton" class="install-button"><i class="fas fa-download" aria-hidden="true"></i> Install DStory App</button></div><p class="footer-copyright">&copy; 2024 DStory. All rights reserved.</p></div></div></footer><script>if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+          try {
+            const registration = await navigator.serviceWorker.register('/dstory/sw.js', {
+              scope: '/dstory/'
             });
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          } catch (err) {
+            console.log('ServiceWorker registration failed: ', err);
+          }
         });
       }
 
-      // Install Prompt Handler
+      // Install PWA
       let deferredPrompt;
+      const installContainer = document.getElementById('installContainer');
       const installButton = document.getElementById('installButton');
-      const installPrompt = document.getElementById('installPrompt');
 
       window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -169,7 +236,7 @@
         // Stash the event so it can be triggered later
         deferredPrompt = e;
         // Show the install button
-        installPrompt.hidden = false;
+        installContainer.hidden = false;
       });
 
       installButton.addEventListener('click', async () => {
@@ -183,12 +250,12 @@
         // We no longer need the prompt
         deferredPrompt = null;
         // Hide the install button
-        installPrompt.hidden = true;
+        installContainer.hidden = true;
       });
 
       window.addEventListener('appinstalled', () => {
         // Hide the install button
-        installPrompt.hidden = true;
+        installContainer.hidden = true;
         // Clear the deferredPrompt
         deferredPrompt = null;
         // Log the installation
